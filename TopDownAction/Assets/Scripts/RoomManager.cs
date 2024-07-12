@@ -1,0 +1,64 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class RoomManager : MonoBehaviour
+{ 
+
+    //static 변수
+public static int doorNumber = 0;   //문번호
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        //플레이어 캐릭터 위치
+        //출입구를 배열로 얻기
+        GameObject[] enters = GameObject.FindGameObjectsWithTag("Exit");    //Objects 복수로 사용할거면 오브젝트 뒤에 s를 붙임. 오브젝트는 유니크한 친구라 캐릭터에게 부여함.
+        for (int i = 0; i< enters.Length; i++)
+        {
+            GameObject doorObj = enters[i];            //배열에서 꺼내기
+            Exit exit = doorObj.GetComponent<Exit>();   //Exit 클래스 변수
+            if (doorNumber == exit.doorNumber)
+            {
+                //==같은 문 번호 ==
+                //플레이어 캐릭터 출입구로 이동
+                float x = doorObj.transform.position.x;
+                float y = doorObj.transform.position.y;
+                if(exit.direction == ExitDirection.up)
+                {
+                    y += 1;
+                }
+                else if (exit.direction == ExitDirection.right)
+                {
+                    x += 1;
+                }
+                else if (exit.direction == ExitDirection.down)
+                {
+                    y -= 1;
+                }
+                else if (exit.direction == ExitDirection.left)
+                {
+                    x -= 1;
+                }
+                GameObject player = GameObject.FindGameObjectWithTag("Player");
+                player.transform.position = new Vector3(x, y);
+                break;      //반복문 빠져나오기
+
+            }
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    //씬 이동
+    public static void ChangeScene(string scnename, int doornum)
+    {
+        doorNumber = doornum;               //문 번호를 static 변수에 저장
+        SceneManager.LoadScene(scnename);   //씬 이동
+    }
+}
