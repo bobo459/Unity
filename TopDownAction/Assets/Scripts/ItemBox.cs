@@ -9,10 +9,14 @@ public class ItemBox : MonoBehaviour
     public bool isClosed = true;        //true= 닫혀있음, false= 열려있음.
     public int arrangeId = 0;           //배치 식별에 사용
 
+
+    SaveLoadManager saveLoadManager;   //===저장===
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        saveLoadManager = GameObject.FindObjectOfType<SaveLoadManager>();     //===저장===
     }
 
     // Update is called once per frame
@@ -32,7 +36,12 @@ public class ItemBox : MonoBehaviour
             {
                 //프리팹으로 아이템 만들기
                 Instantiate(itemPrefad, transform.position, Quaternion.identity);
+
             }
+
+            saveLoadManager.SetSceneData(this.gameObject.name, false);     //===저장===
+
         }
+
     }
 }

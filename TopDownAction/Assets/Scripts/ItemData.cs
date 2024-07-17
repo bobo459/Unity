@@ -18,10 +18,13 @@ public class ItemData : MonoBehaviour
     public int arrangId = 0;    //식별을 위한 값
 
 
+    SaveLoadManager saveLoadManager;   //===저장===
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        saveLoadManager = GameObject.FindObjectOfType<SaveLoadManager>();     //===저장===
     }
 
     // Update is called once per frame
@@ -54,6 +57,11 @@ public class ItemData : MonoBehaviour
                     PlayerController.hp++;
                 }
             }
+
+            saveLoadManager.SetSceneData(this.gameObject.name, false);     //===저장===
+
+
+
             //+++++아이템 획득 연출+++++
             //충돌 판정 비활성
             gameObject.GetComponent<CircleCollider2D>().enabled = false;
