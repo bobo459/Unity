@@ -3,6 +3,9 @@ using UnityEngine;
 using System.IO;
 
 [CreateAssetMenu(fileName = "SceneData", menuName = "GameData/SceneData")]
+/// Assets/Resources/Record/스크립터블오브젝터를 생성
+
+
 public class SceneData : ScriptableObject
 {
     public string sceneName;

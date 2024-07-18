@@ -6,7 +6,15 @@ using UnityEngine.SceneManagement;
 using Newtonsoft.Json;   //제이슨 직렬화, 제이슨 역직렬화? 를 위해 사용 =>에러나면 유니티에서 위도우 메니져에서 제이슨 설치했는지 확인하기
 using System.Threading.Tasks;  //비동기를 사용할수 있게 해줌
 
+// 전처리 지시어
+// #if
+// #endif
 
+// #if
+// #elseif
+// #endif
+
+#if !USE_SCRIPTABLE_OBJECT
 public class GlobalData
 {
     public int arrows;
@@ -255,3 +263,4 @@ public class SaveLoadManager : MonoBehaviour
         }
     }
 }
+#endif
