@@ -6,13 +6,13 @@ public class Door : MonoBehaviour
 {
     public int arrangeId = 0;       //식별에 사용하기 위한 값
 
-    SaveLoadManager saveLoadManager;   //저장
+    SaveLoadManager saveLoadManager;   //===저장===
 
 
     // Start is called before the first frame update
     void Start()
     {
-        saveLoadManager = GameObject.FindObjectOfType<SaveLoadManager>();
+        saveLoadManager = GameObject.FindObjectOfType<SaveLoadManager>();     //===저장===
     }
 
     // Update is called once per frame
@@ -29,7 +29,7 @@ public class Door : MonoBehaviour
             {
                 ItemKeeper.hasKeys--;           //열쇠를 하나 감소
 
-                saveLoadManager.SetSceneData(this.gameObject.name, false);
+                saveLoadManager.SetSceneData(this.gameObject.name, false);     //===저장===
 
                 Destroy(this.gameObject);       //문열기
             }
