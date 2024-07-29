@@ -1,9 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Runtime.InteropServices;
 
 public class PlayerController : MonoBehaviour
 {
+    //extern 함수 호출
+    [DllImport("__Internal")]
+    private static extern void GameOverExtern(string userName, int score);
+
+
 
     //이동 속도
     public float speed = 3.0f;    //방향벡터 * 스피드 값
@@ -206,6 +212,12 @@ public class PlayerController : MonoBehaviour
     //게임오버
     void GameOver()
     {
+        //extern 함수 호출
+        #if UNITY_WEBGL == true && UNITY_EDITOR == false
+        GameOverExtern ("Player1", 100);
+        #endif
+
+
         Debug.Log("게임 오버!");
         gameState = "gameover";
         //========
